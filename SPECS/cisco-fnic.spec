@@ -8,10 +8,16 @@
 
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{vendor_label}-%{driver_name}
-Version: 1.6.0.44
+Epoch: 1
+Version: 1.6.0.47
 Release: 1%{?dist}
 License: GPL
-Source: https://code.citrite.net/rest/archive/latest/projects/XS/repos/driver-%{name}/archive?at=%{version}&format=tgz&prefix=driver-%{name}-%{version}#/%{name}-%{version}.tar.gz
+
+Source0: https://code.citrite.net/rest/archive/latest/projects/XS/repos/driver-cisco-fnic/archive?at=1.6.0.47&format=tgz&prefix=driver-cisco-fnic-1.6.0.47#/cisco-fnic-1.6.0.47.tar.gz
+
+
+Provides: gitsha(https://code.citrite.net/rest/archive/latest/projects/XS/repos/driver-cisco-fnic/archive?at=1.6.0.47&format=tgz&prefix=driver-cisco-fnic-1.6.0.47#/cisco-fnic-1.6.0.47.tar.gz) = f3336601b9d08774b487673f8b0b4e2a797985a2
+
 
 BuildRequires: kernel-devel
 Provides: vendor-driver
@@ -50,3 +56,5 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 /lib/modules/%{kernel_version}/*/*.ko
 
 %changelog
+* Tue Dec 18 2018 Deli Zhang <deli.zhang@citrix.com> - 1:1.6.0.47-1
+- CP-30005: Upgrade cisco-fnic driver to version 1:1.6.0.47

@@ -1,8 +1,8 @@
-%global package_speccommit 16b569cf7aabbf0b444b8eb0370bc8800f15401b
-%global usver 2.0.0.59
-%global xsver 2
+%global package_speccommit 26c5ad28e9618c0d8654caecaac6819ac6bc59c3
+%global usver 2.0.0.85
+%global xsver 1
 %global xsrel %{xsver}%{?xscount}%{?xshash}
-%global package_srccommit 2.0.0.59
+%global package_srccommit 2.0.0.85
 %define vendor_name Cisco
 %define vendor_label cisco
 %define driver_name fnic
@@ -21,10 +21,10 @@
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{vendor_label}-%{driver_name}
 Epoch: 1
-Version: 2.0.0.59
+Version: 2.0.0.85
 Release: %{?xsrel}%{?dist}
 License: GPL
-Source0: cisco-fnic-2.0.0.59.tar.gz
+Source0: cisco-fnic-2.0.0.85.tar.gz
 
 BuildRequires: gcc
 BuildRequires: kernel-devel
@@ -70,6 +70,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 %{?_cov_results_package}
 
 %changelog
+* Sat Oct 08 2022 Zhuangxuan Fei <zhuangxuan.fei@citrix.com> - 2.0.0.85-1
+- CP-40435: Upgrade cisco-fnic driver to verson 1:2.0.0.85
+
 * Mon Feb 14 2022 Ross Lagerwall <ross.lagerwall@citrix.com> - 2.0.0.59-2
 - CP-38416: Enable static analysis
 

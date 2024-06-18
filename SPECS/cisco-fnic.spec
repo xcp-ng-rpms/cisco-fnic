@@ -1,8 +1,8 @@
-%global package_speccommit 31e8a02d0c974415da7849ea4d6f550b5c66415d
-%global usver 2.0.0.89
+%global package_speccommit 460b7eaee1f47edcdf8d51282b78f2c519c98f84
+%global usver 2.0.0.90
 %global xsver 1
 %global xsrel %{xsver}%{?xscount}%{?xshash}
-%global package_srccommit 2.0.0.89
+%global package_srccommit 2.0.0.90
 %define vendor_name Cisco
 %define vendor_label cisco
 %define driver_name fnic
@@ -21,10 +21,10 @@
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{vendor_label}-%{driver_name}
 Epoch: 1
-Version: 2.0.0.89
+Version: 2.0.0.90
 Release: %{?xsrel}%{?dist}
 License: GPL
-Source0: cisco-fnic-2.0.0.89.tar.gz
+Source0: cisco-fnic-2.0.0.90.tar.gz
 
 BuildRequires: kernel-devel
 %{?_cov_buildrequires}
@@ -42,6 +42,10 @@ version %{kernel_version}.
 %{?_cov_prepare}
 
 %build
+chmod +x configure
+chmod +x version.sh
+export KNAME=%{kernel_version}
+./configure
 %{?_cov_wrap} %{make_build} -C /lib/modules/%{kernel_version}/build M=$(pwd) KSRC=/lib/modules/%{kernel_version}/build modules
 
 %install
@@ -69,6 +73,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 %{?_cov_results_package}
 
 %changelog
+* Tue Feb 20 2024 Stephen Cheng <stephen.cheng@cloud.com> - 2.0.0.90-1
+- CP-47392: Upgrade cisco-fnic driver to version 2.0.0.90
+
 * Wed May 24 2023 Stephen Cheng <stephen.cheng@citrix.com> - 2.0.0.89-1
 - CP-41865: Upgrade cisco-fnic driver to version 1:2.0.0.89
 

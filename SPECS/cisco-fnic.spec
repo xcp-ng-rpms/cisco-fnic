@@ -22,9 +22,12 @@ Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{vendor_label}-%{driver_name}
 Epoch: 1
 Version: 2.0.0.90
-Release: %{?xsrel}%{?dist}
+Release: %{?xsrel}.1%{?dist}
 License: GPL
 Source0: cisco-fnic-2.0.0.90.tar.gz
+
+# XCP-ng specific patch
+Patch1000: xcpng8-configure.patch
 
 BuildRequires: gcc
 BuildRequires: kernel-devel
@@ -74,6 +77,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 %{?_cov_results_package}
 
 %changelog
+* Thu Jun 20 2024 Thierry Escande <thierry.escande@vates.tech> - 2.0.0.90-1.1
+- Add patch for XCP-ng distribution detection in configure script
+
 * Tue Feb 20 2024 Stephen Cheng <stephen.cheng@cloud.com> - 2.0.0.90-1
 - CP-47392: Upgrade cisco-fnic driver to version 2.0.0.90
 

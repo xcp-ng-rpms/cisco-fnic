@@ -1,0 +1,23 @@
+Add support for XCP-ng distribution detection in configure script
+
+diff --git a/configure b/configure
+index 8742e71..87831ea 100755
+--- a/configure
++++ b/configure
+@@ -3214,6 +3214,16 @@ $as_echo_n "checking Linux distribution... " >&6; }
+             LINUX_HEADER_DIR=/lib/modules/$KNAME/source
+             DISTRO_VER=${LINUX_DISTRO}${RHEL_MAJOR}u${RHEL_MINOR}
+ 
++        elif test -n "`echo $NAME | grep XCP-ng`"; then
++            RHEL_VER=$VERSION_ID
++            RHEL_MAJOR=`echo $RHEL_VER | cut -d. -f1`
++            RHEL_MINOR=`echo $RHEL_VER | cut -d. -f2`
++            RPM_BUILD_PKG=redhat-rpm-config
++            LINUX_DISTRO=xcpng
++            LINUX_DISTRO_DISK="xcpng$RHEL_MAJOR"
++            LINUX_HEADER_DIR=/usr/src/kernels/$KNAME
++            DISTRO_VER=${LINUX_DISTRO}${RHEL_MAJOR}u${RHEL_MINOR}
++
+ 	elif test -n "`echo $NAME | grep 'Oracle'`"; then
+             UEK_VER=$VERSION_ID
+             UEK_MAJOR=`echo $UEK_VER | cut -d. -f1`

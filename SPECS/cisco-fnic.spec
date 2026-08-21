@@ -20,9 +20,11 @@
 
 Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{vendor_label}-%{driver_name}
-Epoch: 1
 Version: 2.0.0.90
-Release: %{?xsrel}.1%{?dist}
+Release: %{?xsrel}.2%{?dist}
+# Built against new kABI after cip rebase
+Requires: xcpng-kernel-kabi = 4.19.325-cip134+
+
 License: GPL
 Source0: cisco-fnic-2.0.0.90.tar.gz
 
@@ -77,6 +79,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 %{?_cov_results_package}
 
 %changelog
+* Mon Aug 31 2026 Quentin Casasnovas <quentin.casasnovas@vates.tech> - 2.0.0.90-1.2
+- Rebuild for kernel v4.19.325-cip134
+
 * Thu Jun 20 2024 Thierry Escande <thierry.escande@vates.tech> - 2.0.0.90-1.1
 - Add patch for XCP-ng distribution detection in configure script
 

@@ -22,7 +22,7 @@ Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{vendor_label}-%{driver_name}
 Epoch: 1
 Version: 2.0.0.90
-Release: %{?xsrel}.1%{?dist}
+Release: %{?xsrel}.1.0.kernelpreview.1%{?dist}
 License: GPL
 Source0: cisco-fnic-2.0.0.90.tar.gz
 
@@ -30,7 +30,7 @@ Source0: cisco-fnic-2.0.0.90.tar.gz
 Patch1000: xcpng8-configure.patch
 
 BuildRequires: gcc
-BuildRequires: kernel-devel
+BuildRequires: kernel-devel >= 4.19.325-cip137.8.0.46.16
 %{?_cov_buildrequires}
 Provides: vendor-driver
 Requires: kernel-uname-r = %{kernel_version}
@@ -77,6 +77,9 @@ find %{buildroot}/lib/modules/%{kernel_version} -name "*.ko" -type f | xargs chm
 %{?_cov_results_package}
 
 %changelog
+* Mon Nov 16 2026 Quentin Casasnovas <quentin.casasnovas@vates.tech> - 2.0.0.90-1.1.0.kernelpreview.1
+- Rebuild for kernel v4.19.325-cip137
+
 * Thu Jun 20 2024 Thierry Escande <thierry.escande@vates.tech> - 2.0.0.90-1.1
 - Add patch for XCP-ng distribution detection in configure script
 

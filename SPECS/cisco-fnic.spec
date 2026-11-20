@@ -22,7 +22,7 @@ Summary: %{vendor_name} %{driver_name} device drivers
 Name: %{vendor_label}-%{driver_name}
 Epoch: 1
 Version: 2.0.0.90
-Release: %{?xsrel}.1.0.kernelpreview.1%{?dist}
+Release: %{?xsrel}.1.0.kernelpreview.1.0.testv0.1%{?dist}
 License: GPL
 Source0: cisco-fnic-2.0.0.90.tar.gz
 
